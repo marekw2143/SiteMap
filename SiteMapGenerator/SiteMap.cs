@@ -31,8 +31,7 @@ namespace SiteMapGenerator
 			Logger.Log("Page: " + page.Url);
 #endif
 			foreach (var url in page.GetFullChildUrls()
-										.Where(PageHelper.IsPageUrl)
-										.Distinct()
+
 			         .ToList())
 			{
 #if DEBUG

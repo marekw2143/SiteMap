@@ -20,7 +20,7 @@ namespace SiteMapGenerator
 #endif
 
 			var rt = Sm.GetAllPages()
-			           .Take(2)
+			           .Take(11)
 			           .Select(p => new PageLoadingTimes(p))
 			           .ToList();
 

@@ -30,14 +30,11 @@ namespace SiteMapGenerator
 			{
 				var startTime = DateTime.Now;
 
-				PageHelper.GetPageConent(Url);
+				Helper.GetContentFromUrl(Url);
 
-				foreach (var childUrl in _page.GetFullChildUrls(false)
-							  .Where(PageHelper.IsStuffUrl)
-							 .Distinct()
-						.ToList())
+				foreach (var childUrl in _page.GetImageUrls())
 				{
-					PageHelper.GetPageConent(Url);
+					Helper.GetContentFromUrl(Url);
 				}
 
 				var endTime = DateTime.Now;

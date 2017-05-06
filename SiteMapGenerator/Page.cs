@@ -75,23 +75,24 @@ namespace SiteMapGenerator
 			this._childPages.Add(pageToAdd);
 		}
 
-		public List<string> GetFullChildUrls(bool aOnly = true)
+		public List<string> GetFullChildUrls()
 		{
-			return PageHelper.GetUrls(Content, aOnly)
-							 .Where(u => !u.StartsWith("#", StringComparison.Ordinal))
-							 .Select(RemoveCarret)
+			return PageHelper.GetStuffAddresses(Content)				             
 							 .Select(CombineUrl)
+							 .Where(PageHelper.IsPageUrl)
+							 .Distinct()
 							 .ToList();
 		}
 
-		string RemoveCarret(string arg)
+		public List<string> GetImageUrls()
 		{
-			if (arg.Contains("#"))
-			{
-				return arg.Substring(0, arg.IndexOf("#", StringComparison.Ordinal));
-			}
-			return arg;
+			return PageHelper.GetImageUrls(Content)
+							 .Select(CombineUrl)
+				             .Where(PageHelper.IsStuffUrl)
+							 .Distinct()
+							 .ToList();
 		}
+
 
 		public Page(string url)
 		{
